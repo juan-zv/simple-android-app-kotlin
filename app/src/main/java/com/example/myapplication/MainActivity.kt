@@ -14,6 +14,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvFriend: TextView
     private lateinit var btnAbstractFriend: Button
 
+    class Friend (private val name:String, private val age:String){
+
+        fun greet (): String {
+            return "Hi, I am $name and I am $age years old!"
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,13 +32,10 @@ class MainActivity : AppCompatActivity() {
         tvFriend.visibility = View.INVISIBLE
 
         btnAbstractFriend.setOnClickListener {
-            val name = etName.text.toString()
-            val age = etAge.text.toString()
 
-            val greeting = "Hi, I am $name and I am $age years old!"
-            tvFriend.text = greeting
+            val newFriend = Friend(etName.text.toString(), etAge.text.toString())
 
-
+            tvFriend.text = newFriend.greet()
 
             tvFriend.visibility = View.VISIBLE
         }
